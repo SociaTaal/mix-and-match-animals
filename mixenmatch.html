@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix en Match Quiz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #FFB03B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #e09b2e;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Hoe noem je de baby's van dieren?</h2>
+        <form id="quiz-form">
+            <div class="quiz-question">
+                <label for="animal-1">De kip:</label>
+                <select id="animal-1">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <div class="quiz-question">
+                <label for="animal-2">De koe:</label>
+                <select id="animal-2">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <div class="quiz-question">
+                <label for="animal-3">Het schaap:</label>
+                <select id="animal-3">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <div class="quiz-question">
+                <label for="animal-4">Het paard:</label>
+                <select id="animal-4">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <div class="quiz-question">
+                <label for="animal-5">De kat:</label>
+                <select id="animal-5">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <div class="quiz-question">
+                <label for="animal-6">De hond:</label>
+                <select id="animal-6">
+                    <option value="">Kies een optie</option>
+                    <option value="Het kuikentje">Het kuikentje</option>
+                    <option value="Het kalf">Het kalf</option>
+                    <option value="Het veulen">Het veulen</option>
+                    <option value="De puppy">De puppy</option>
+                    <option value="Het lammetje">Het lammetje</option>
+                    <option value="De kitten/het poesje">De kitten/het poesje</option>
+                </select>
+            </div>
+
+            <button type="button" onclick="submitQuiz()">Verstuur</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            var score = 0;
+            var correctAnswers = {
+                "animal-1": "Het kuikentje",
+                "animal-2": "Het kalf",
+                "animal-3": "Het lammetje",
+                "animal-4": "Het veulen",
+                "animal-5": "De kitten/het poesje",
+                "animal-6": "De puppy"
+            };
+
+            for (var key in correctAnswers) {
+                var userAnswer = document.getElementById(key).value;
+                if (userAnswer === correctAnswers[key]) {
+                    score++;
+                    document.getElementById(key).style.borderColor = "green";
+                } else {
+                    document.getElementById(key).style.borderColor = "red";
+                }
+            }
+
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Je hebt ' + score + ' van de 6 vragen correct!';
+        }
+    </script>
+</body>
+</html>
